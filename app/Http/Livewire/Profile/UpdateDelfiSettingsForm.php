@@ -14,7 +14,7 @@ class UpdateDelfiSettingsForm extends Component
 
     protected $rules = [
         'channel' => 'required|max:20',
-        'records_count' => 'required|integer'
+        'records_count' => 'required|integer|gt:0'
     ];
 
     public function submit() {
