@@ -14,6 +14,11 @@ class XmlHelper
     public static function recordsToCollection($records) : Collection
     {
         $array = [];
+
+        if (!$records) {
+            return collect($array);
+        }
+
         foreach ($records as $record) {
             $array[] = (array)$record;
         }
