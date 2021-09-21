@@ -56,6 +56,12 @@ $ php artisan db:seed --class=ChannelSeeder
 ```shell
 $ php artisan key:generate
 ```
+> Set your APP_URL in .env , ex. is APP_URL=http://localhost:8000 and run the command in CLI as
+```shell
+$ php artisan storage:link
+```
+
+
 ---
 
 Be sure, you have Facebook APPs configured for facebook login
