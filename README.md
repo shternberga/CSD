@@ -1,64 +1,84 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Delfi RSS app
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+> Laravel 8
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+> Codebase PHP 7.3
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> Database MySQL
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Installation
 
-## Learning Laravel
+### Clone
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Clone this repo to your local machine using `https://github.com/shternberga/CSD.git`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Setup
 
-## Laravel Sponsors
+> install composer packages first
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```shell
+$ composer install
+```
 
-### Premium Partners
+> now install npm
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+```shell
+$ npm install
+```
 
-## Contributing
+> add your database connection variables into your .env file
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```shell
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=YourDatabeseName
+DB_USERNAME=YourUsername
+DB_PASSWORD=YourPassword
+```
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> run migrations
 
-## Security Vulnerabilities
+```shell
+$ php artisan migrate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+> seed delfi channels
 
-## License
+```shell
+$ php artisan db:seed --class=ChannelSeeder
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> generate app key
+
+```shell
+$ php artisan key:generate
+```
+---
+
+Be sure, you have Facebook APPs configured for facebook login
+- Go to Facebook’s developers URL: <a href="https://developers.facebook.com/" target="_blank">FB APPS</a> and log in with your Facebook account.
+- Go to ‘My Apps’, proceed to ‘Add New App’.
+- Next, go to Settings -> Basic, copy your app_id and app_secret
+- Next, click on the ‘+’ button beside ‘PRODUCTS’, select ‘Facebook Login’, also select ‘WWW’. Then add your website URL: https://localhost:8000 and click on ‘Save’
+- Then go to Facebook Login -> Settings, scroll down to ‘Valid OAuth Redirect URL’ and add your callback /redirect URL: https://localhost:8000/auth/facebook/callback
+- Now got to your ‘.env’ file and update it with copied app_id, app_secret and callback redirect url:
+
+```shell
+FACEBOOK_APP_ID=xxxxxxxxxxxxxxxx
+FACEBOOK_APP_SECRET=xxxxxxxxxxxxxxxxxxxxxx
+FACEBOOK_REDIRECT=http://localhost:8000/auth/facebook/callback
+```
+---
+Now run `php artisan serve`
+
+and test the app.
+
+---
+## Authors
+
+* **Lilija Sternberga** - [GitHub](https://github.com/shternberga),
+  [LinkedIn](https://www.linkedin.com/in/lilija-sternberga/)
+
